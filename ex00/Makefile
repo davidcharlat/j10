@@ -1,22 +1,18 @@
-SRCFILES =	./srcs/ft_putchar.c \
-			./srcs/ft_putstr.c \
-			./srcs/ft_strcmp.c \
-			./srcs/ft_swap.c \
-			./srcs/ft_strlen.c
-			
-OFILES =	./ft_putchar.o \
-			./ft_putstr.o \
-			./ft_strcmp.o \
-			./ft_swap.o \
-			./ft_strlen.o
+SRCPATH = ./srcs/
+
+SRCFILES =	ft_putchar \
+			ft_putstr \
+			ft_strcmp \
+			ft_swap \
+			ft_strlen
 
 all:
-	gcc -c $(SRCFILES)
-	ar rc libft.a $(OFILES)
+	gcc -c $(addsuffix .c,$(addprefix $(SRCPATH), $(SRCFILES)))
+	ar rc libft.a $(addsuffix .o, $(SRCFILES))
 	ranlib libft.a
 	
 clean:
-	rm -f $(OFILES)
+	rm -f $(addsuffix .o, $(SRCFILES))
 	
 fclean: clean
 	rm -f libft.a
